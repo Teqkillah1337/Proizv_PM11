@@ -1,0 +1,38 @@
+﻿<Window x:Class="LibraryManagementSystem.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Library Management System - Admin" Height="450" Width="800"
+        Background="#F0FFF0">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Admin Dashboard" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="20" Foreground="DarkGreen"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10" Width="150">
+            <!--<Button Content="System Settings" Margin="5" Padding="10,5" Click="SystemSettings_Click" Background="ForestGreen" Foreground="White" BorderBrush="DarkGreen"/>-->
+            <Button Content="Manage Users" Margin="5" Padding="10,5" Click="ManageUsers_Click" Background="ForestGreen" Foreground="White" BorderBrush="DarkGreen"/>
+            <Button Content="Generate Report" Margin="5" Padding="10,5" Click="GenerateReport_Click" Background="ForestGreen" Foreground="White" BorderBrush="DarkGreen"/>
+            <Button Content="Monitor Activity" Margin="5" Padding="10,5" Click="MonitorActivity_Click" Background="ForestGreen" Foreground="White" BorderBrush="DarkGreen"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="CurrentViewHeader" Grid.Row="0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left" Margin="10" Text="System Settings" />
+            <ContentControl x:Name="CurrentViewContent" Grid.Row="1" Margin="10" />
+        </Grid>
+
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Logout" HorizontalAlignment="Center" Margin="10" Padding="10,5" Click="Logout_Click" Background="LightGreen" Foreground="DarkGreen" BorderBrush="DarkGreen"/>
+    </Grid>
+</Window>

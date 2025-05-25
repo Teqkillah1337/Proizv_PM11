@@ -1,0 +1,113 @@
+﻿<Window x:Class="LibraryManagementSystem.ReaderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Library Management System - Reader" Height="600" Width="800"
+        Background="#F0FFF0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Reader Dashboard" FontSize="24" FontWeight="Bold" 
+                  HorizontalAlignment="Center" Margin="20" Foreground="DarkGreen"/>
+
+        <TabControl Grid.Row="1" Margin="10">
+            <TabItem Header="View Catalog">
+                <StackPanel Margin="10">
+                    <DataGrid x:Name="CatalogDataGrid" AutoGenerateColumns="False" Height="300">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="100"/>
+                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                            <DataGridTextColumn Header="Year" Binding="{Binding PublishYear}" Width="80"/>
+                            <DataGridTextColumn Header="Genre" Binding="{Binding Genre.Name}" Width="120"/>
+                            <DataGridTextColumn Header="Available" Binding="{Binding IsAvailable}" Width="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Refresh Catalog" Margin="0,10,0,0" Padding="10,5" 
+                            Click="RefreshCatalog_Click" Background="ForestGreen" Foreground="White"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Search Book">
+                <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="SearchTextBox" Margin="5"/>
+                        <Button Content="Search" Grid.Column="1" Margin="5" Padding="10,5" 
+                                Click="SearchBook_Click" Background="ForestGreen" Foreground="White"/>
+                    </Grid>
+                    <DataGrid x:Name="SearchResultsDataGrid" AutoGenerateColumns="False" Height="300" Margin="0,10,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="100"/>
+                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                            <DataGridTextColumn Header="Year" Binding="{Binding PublishYear}" Width="80"/>
+                            <DataGridTextColumn Header="Available" Binding="{Binding IsAvailable}" Width="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="My Books">
+                <StackPanel Margin="10">
+                    <DataGrid x:Name="MyBooksDataGrid" AutoGenerateColumns="False" Height="300">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Book" Binding="{Binding Book.Title}" Width="*"/>
+                            <DataGridTextColumn Header="Issue Date" Binding="{Binding IssueDate, StringFormat=d}" Width="100"/>
+                            <DataGridTextColumn Header="Due Date" Binding="{Binding DueDate, StringFormat=d}" Width="100"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Refresh My Books" Margin="0,10,0,0" Padding="10,5" 
+                            Click="RefreshMyBooks_Click" Background="ForestGreen" Foreground="White"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Write Review">
+                <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Book ISBN:" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="ReviewBookIsbnTextBox" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Rating (1-5):" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                        <ComboBox x:Name="RatingComboBox" Grid.Row="1" Grid.Column="1" Margin="5">
+                            <ComboBoxItem Content="1"/>
+                            <ComboBoxItem Content="2"/>
+                            <ComboBoxItem Content="3"/>
+                            <ComboBoxItem Content="4"/>
+                            <ComboBoxItem Content="5"/>
+                        </ComboBox>
+
+                        <TextBlock Text="Review:" Grid.Row="2" Grid.Column="0" Margin="5"/>
+                        <TextBox x:Name="ReviewTextBox" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                                 Margin="5" AcceptsReturn="True" Height="100"/>
+
+                        <Button Content="Submit Review" Grid.Row="4" Grid.ColumnSpan="2" 
+                                Margin="5" Padding="10,5" Click="SubmitReview_Click" 
+                                Background="ForestGreen" Foreground="White"/>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+        <Button Grid.Row="2" Content="Logout" HorizontalAlignment="Center" 
+                Margin="10" Padding="10,5" Click="Logout_Click" 
+                Background="LightGreen" Foreground="DarkGreen"/>
+    </Grid>
+</Window>
